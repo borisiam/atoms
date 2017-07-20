@@ -32,82 +32,20 @@ span {
 	position: absolute;
 }
 
-#core {
+.core {
 	width: 15px;
 	height: 15px;
 	background-color: red;
 }
 
-#electron {
+.electron {
 	width: 4px;
 	height: 4px;
 	background-color: black;
 }
 
-#core1 {
+.core1 {
 	width: 18px;
 	height: 18px;
 	background-color: #ff7a2d;
-}
-
-#electron1 {
-	width: 4px;
-	height: 4px;
-	background-color: black;
-}
-
-#electron1k {
-	width: 4px;
-	height: 4px;
-	background-color: black;
-}
-
-table {
-	margin: auto;
-}
-
-thead {
-	text-align: center;
-}
-
-td {
-	width: 100px;
-	height: 100px;
-}
-
-.vertical{	
-	border-left: 1px solid black;
-	border-right: 1px solid black;
-}
-
-.horizontal{
-	border-top: 1px solid black;
-	border-bottom: 1px solid black;
-}
-
-a {
-	text-decoration: none;
-}
-
-a::before {
-	content:'';
-	width: 2em;
-	height: 2em;
-	background-color: red;
-
-}
-
-a::after{
-	content: " {()}"
-}
-
-a:hover {
-	font-size: 2em;
-	font-weight: 800;
-}
-
-#penises {
-	width: 100%;
-	margin: auto;
-	text-align: center;
 }
