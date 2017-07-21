@@ -187,7 +187,7 @@ function createAtom () {
 
 
 
-for(var i = 0; i < 20; i++){
+for(var i = 0; i < 30; i++){
 	createAtom();
 }
 
