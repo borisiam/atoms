@@ -36,16 +36,19 @@ span {
 	width: 15px;
 	height: 15px;
 	background-color: red;
+	transform: translate(-50%,-50%);
 }
 
 .electron {
 	width: 4px;
 	height: 4px;
 	background-color: black;
+	transform: translate(-50%,-50%);
 }
 
 .core1 {
 	width: 18px;
 	height: 18px;
 	background-color: #ff7a2d;
+	transform: translate(-50%,-50%);
 }

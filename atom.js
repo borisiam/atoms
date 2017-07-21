@@ -55,73 +55,139 @@
 
 // EXPERIMENTS
 function createAtom () {
-	var electron = document.createElement("div");
-	electron.classList.add("atom", "electron");
-	document.body.appendChild(electron);
+	var oneTwo = Math.round(Math.random());
 
-	var electron1k = document.createElement("div");
-	electron1k.classList.add("atom", "electron");
-	document.body.appendChild(electron1k);
+	if (oneTwo == 1) {
 
-	var core1 = document.createElement("div");
-	core1.classList.add("atom", "core1");
-	document.body.appendChild(core1);
-
-	var ang1 = 0;
-	var ang21 = 0;
-	var i1 =0;
-	var c1 =0;
-
-	var p = Math.floor(Math.random()*600);
-	var o = Math.floor(Math.random()*600);
-
-	var onOff = Math.round(Math.random());
-	var onOffright = Math.round(Math.random());
-	var onOffleft = Math.round(Math.random());
-
-	setInterval(function(){
-	
-		var sinBlock = 1;
-		var cosBlock = 0;
-		if (onOffleft == 1) {
-			sinBlock = 0;
-		}else{
-			cosBlock = 0;
-		};
-		var k = Math.cos(i1)*p;
-		var b = Math.sin(i1)*p;
-		electron.style.left = String(Math.sin(ang1)*20 + o + (k*cosBlock) + (b*sinBlock))+"px";
-		electron1k.style.left = String(Math.cos(ang1)*30 + o + (k*cosBlock) + (b*sinBlock))+"px";
-		core1.style.left = String((k*cosBlock) + (b*sinBlock) + o*0.98)+"px";
-
-		ang21 +=0.05;
-		i1 += 0.008;
-
-	
-		var sinBlockr = 0;
-		var cosBlockr = 1;
-		if (onOffright == 1) {
-			sinBlockr = 0;
-		}else{
-			cosBlockr = 0;
-		};
+		var electron = document.createElement("div");
+		electron.classList.add("atom", "electron");
+		document.body.appendChild(electron);
 
 
-		var j = Math.sin(c1)*p;
-		var x = Math.cos(i1)*p;
-		electron.style.top = String(Math.cos(ang1)*20 + (k*onOff) + o + (j*sinBlockr) + (x*cosBlockr))+"px";
-		electron1k.style.top = String(Math.sin(ang1)*30 + (k*onOff) + o + (j*sinBlockr) + (x*cosBlockr))+"px";
-		core1.style.top = String((j*sinBlockr) + (x*cosBlockr) + o*0.98+ (k*onOff))+"px";
+		var core1 = document.createElement("div");
+		core1.classList.add("atom", "core");
+		document.body.appendChild(core1);
 
-		ang1 +=0.05;
-	    c1 += 0.008;
+		var ang1 = 0;
+		var ang21 = 0;
+		var i1 =0;
+		var c1 =0;
 
-	},5);
-};
+		var p = Math.floor(10 + Math.random()*100);
+		var o = Math.floor(10 + Math.random()*document.body.offsetWidth -10);
+		var randTop = Math.floor(10 + Math.random()*400);
+
+		var onOff = Math.round(Math.random());
+		var onOffright = Math.round(Math.random());
+		var onOffleft = Math.round(Math.random());
+
+		setInterval(function(){
+		
+			var sinBlock = 1;
+			var cosBlock = 1;
+			if (onOffleft == 1) {
+				sinBlock = 0;
+			}else{
+				cosBlock = 0;
+			};
+			var k = Math.cos(i1)*p;
+			var b = Math.sin(i1)*p;
+			electron.style.left = String(Math.sin(ang1)*20 + o + (k*cosBlock) + (b*sinBlock))+"px";
+			core1.style.left = String((k*cosBlock) + (b*sinBlock) + o)+"px";
+
+			ang21 +=0.05;
+			i1 += 0.008;
+
+		
+			var sinBlockr = 1;
+			var cosBlockr = 1;
+			if (onOffright == 1) {
+				sinBlockr = 0;
+			}else{
+				cosBlockr = 0;
+			};
+
+
+			var j = Math.sin(c1)*p;
+			var x = Math.cos(c1)*p;
+			electron.style.top = String(Math.cos(ang1)*20 + (k*onOff) + randTop + (j*sinBlockr) + (x*cosBlockr))+"px";
+			core1.style.top = String((j*sinBlockr) + (x*cosBlockr) + randTop+ (k*onOff))+"px";
+
+			ang1 +=0.05;
+		    c1 += 0.008;
+
+		},5);
+	}else{
+		var electron = document.createElement("div");
+		electron.classList.add("atom", "electron");
+		document.body.appendChild(electron);
+
+		var electron1k = document.createElement("div");
+		electron1k.classList.add("atom", "electron");
+		document.body.appendChild(electron1k);
+
+		var core1 = document.createElement("div");
+		core1.classList.add("atom", "core1");
+		document.body.appendChild(core1);
+
+		var ang1 = 0;
+		var ang21 = 0;
+		var i1 =0;
+		var c1 =0;
+
+		var p = Math.floor(10 + Math.random()*150);
+		var o = Math.floor(10 + Math.random()*document.body.offsetWidth -10);
+		var randTop = Math.floor(10 + Math.random()*400);
+
+		var onOff = Math.round(Math.random());
+		var onOffright = Math.round(Math.random());
+		var onOffleft = Math.round(Math.random());
+
+		setInterval(function(){
+		
+			var sinBlock = 1;
+			var cosBlock = 1;
+			if (onOffleft == 1) {
+				sinBlock = 0;
+			}else{
+				cosBlock = 0;
+			};
+			var k = Math.cos(i1)*p;
+			var b = Math.sin(i1)*p;
+			electron.style.left = String(Math.sin(ang1)*20 + o + (k*cosBlock) + (b*sinBlock))+"px";
+			electron1k.style.left = String(Math.cos(ang1)*30 + o + (k*cosBlock) + (b*sinBlock))+"px";
+			core1.style.left = String((k*cosBlock) + (b*sinBlock) + o)+"px";
+
+			ang21 +=0.05;
+			i1 += 0.008;
+
+		
+			var sinBlockr = 1;
+			var cosBlockr = 1;
+			if (onOffright == 1) {
+				sinBlockr = 0;
+			}else{
+				cosBlockr = 0;
+			};
+
+
+			var j = Math.sin(c1)*p;
+			var x = Math.cos(c1)*p;
+			electron.style.top = String(Math.cos(ang1)*20 + (k*onOff) + randTop + (j*sinBlockr) + (x*cosBlockr))+"px";
+			electron1k.style.top = String(Math.sin(ang1)*30 + (k*onOff) + randTop + (j*sinBlockr) + (x*cosBlockr))+"px";
+			core1.style.top = String((j*sinBlockr) + (x*cosBlockr) + randTop+ (k*onOff))+"px";
+
+			ang1 +=0.05;
+		    c1 += 0.008;
+
+		},5);
+	};
+};	
 
 
 
-for(var i = 0; i < 30; i++){
+
+for(var i = 0; i < 20; i++){
 	createAtom();
 }
 
