@@ -1,72 +1,77 @@
-// var electron = document.querySelector("#electron");
-// var core = document.querySelector("#core");
-// var ang = 0;
-// var ang2 = 0;
-// var i =0;
-// var c =0;
 
-// setInterval(function(){
+// FUNCTIONS
 
-// 	var k = Math.sin(i)*40;
-// 	electron.style.left = String(Math.sin(ang)*20 + 100 + k)+"px";
-// 	core.style.left = String(k+92.5)+"px";
+function generateRandIntBetween(a,b) {
+	// function generates randInt in range from a to b
+	// a must be strictly less than b
+	//body
+	if (b > a) {
+		var interval = Math.floor(a + Math.random()*(b-a));
+		return interval;
+	}
+	else
+	{
+		console.log ("a !< b and that is sad");
+	}
 
-// 	ang2 +=0.05;
-// 	i += 0.008;
+};
 
-// 	var j = Math.cos(c)*40;
-// 	electron.style.top = String(Math.cos(ang)*20 + 100 + j)+"px";
-// 	core.style.top = String(j+95)+"px";
-
-// 	ang +=0.05;
-//     c += 0.008;
-
-// },5);
-
-// // second atom
-
-// var electron1 = document.querySelector("#electron1");
-// var electron1k = document.querySelector("#electron1k");
-// var core1 = document.querySelector("#core1");
-// var ang1 = 0;
-// var ang21 = 0;
-// var i1 =0;
-// var c1 =0;
-
-// setInterval(function(){
-
-// 	var k = Math.cos(i1)*100;
-// 	electron1.style.left = String(Math.sin(ang1)*20 + 100 + k)+"px";
-// 	electron1k.style.left = String(Math.cos(ang1)*30 + 100 + k)+"px";
-// 	core1.style.left = String(k+92.5)+"px";
-
-// 	ang21 +=0.05;
-// 	i1 += 0.008;
-
-// 	var j = Math.sin(c1)*100;
-// 	electron1.style.top = String(Math.cos(ang1)*20 + k + 100 + j)+"px";
-// 	electron1k.style.top = String(Math.sin(ang1)*30 + k + 100 + j)+"px";
-// 	core1.style.top = String(j+95+k)+"px";
-
-// 	ang1 +=0.05;
-//     c1 += 0.008;
-
-// },5);
-
-// EXPERIMENTS
-function createAtom () {
-	var oneTwo = Math.round(Math.random());
-
-	if (oneTwo == 1) {
-
+function createAtomOfType(type){
+	// This generates and returns an atom object with a custom number of electrons
+	//if type = 1 - atom has 1 electron, 2 - 2 electrons, etc.
+	if (type === 1){
 		var electron = document.createElement("div");
 		electron.classList.add("atom", "electron");
 		document.body.appendChild(electron);
 
-
 		var core1 = document.createElement("div");
 		core1.classList.add("atom", "core");
 		document.body.appendChild(core1);
+
+		var atom = {
+			core: core1,
+			firstElectron: electron
+		};
+
+		return atom;
+
+	} else if (type === 2) {
+		var electron = document.createElement("div");
+		electron.classList.add("atom", "electron");
+		document.body.appendChild(electron);
+
+		var electron1k = document.createElement("div");
+		electron1k.classList.add("atom", "electron");
+		document.body.appendChild(electron1k);
+
+		var core1 = document.createElement("div");
+		core1.classList.add("atom", "core1");
+		document.body.appendChild(core1);
+
+		var atom = {
+			core: core1,
+			firstElectron: electron,
+			secondElectron: electron1k
+		};
+
+		return atom;
+
+	} else {
+		console.log("incorrect atom type, should be: 1 or 2");
+	};
+
+};
+
+// MAIN
+
+function insertAtom () {
+	var oneTwo = Math.round(Math.random());
+
+	if (oneTwo == 1) {
+
+		var interval = generateRandIntBetween(5,10);
+
+		var atom = createAtomOfType(1);
 
 		var ang1 = 0;
 		var ang21 = 0;
@@ -82,7 +87,8 @@ function createAtom () {
 		var onOffleft = Math.round(Math.random());
 
 		setInterval(function(){
-		
+			// Thsi part randomises direction of circular movement
+			//
 			var sinBlock = 1;
 			var cosBlock = 1;
 			if (onOffleft == 1) {
@@ -92,8 +98,8 @@ function createAtom () {
 			};
 			var k = Math.cos(i1)*p;
 			var b = Math.sin(i1)*p;
-			electron.style.left = String(Math.sin(ang1)*20 + o + (k*cosBlock) + (b*sinBlock))+"px";
-			core1.style.left = String((k*cosBlock) + (b*sinBlock) + o)+"px";
+			atom.firstElectron.style.left = String(Math.sin(ang1)*20 + o + (k*cosBlock) + (b*sinBlock))+"px";
+			atom.core.style.left = String((k*cosBlock) + (b*sinBlock) + o)+"px";
 
 			ang21 +=0.05;
 			i1 += 0.008;
@@ -110,25 +116,18 @@ function createAtom () {
 
 			var j = Math.sin(c1)*p;
 			var x = Math.cos(c1)*p;
-			electron.style.top = String(Math.cos(ang1)*20 + (k*onOff) + randTop + (j*sinBlockr) + (x*cosBlockr))+"px";
-			core1.style.top = String((j*sinBlockr) + (x*cosBlockr) + randTop+ (k*onOff))+"px";
+			atom.firstElectron.style.top = String(Math.cos(ang1)*20 + (k*onOff) + randTop + (j*sinBlockr) + (x*cosBlockr))+"px";
+			atom.core.style.top = String((j*sinBlockr) + (x*cosBlockr) + randTop+ (k*onOff))+"px";
 
 			ang1 +=0.05;
 		    c1 += 0.008;
 
-		},5);
+		},interval);
 	}else{
-		var electron = document.createElement("div");
-		electron.classList.add("atom", "electron");
-		document.body.appendChild(electron);
 
-		var electron1k = document.createElement("div");
-		electron1k.classList.add("atom", "electron");
-		document.body.appendChild(electron1k);
+		var interval = generateRandIntBetween(5,10);
 
-		var core1 = document.createElement("div");
-		core1.classList.add("atom", "core1");
-		document.body.appendChild(core1);
+		var atom = createAtomOfType(2);
 
 		var ang1 = 0;
 		var ang21 = 0;
@@ -154,9 +153,9 @@ function createAtom () {
 			};
 			var k = Math.cos(i1)*p;
 			var b = Math.sin(i1)*p;
-			electron.style.left = String(Math.sin(ang1)*20 + o + (k*cosBlock) + (b*sinBlock))+"px";
-			electron1k.style.left = String(Math.cos(ang1)*30 + o + (k*cosBlock) + (b*sinBlock))+"px";
-			core1.style.left = String((k*cosBlock) + (b*sinBlock) + o)+"px";
+			atom.firstElectron.style.left = String(Math.sin(ang1)*20 + o + (k*cosBlock) + (b*sinBlock))+"px";
+			atom.secondElectron.style.left = String(Math.cos(ang1)*30 + o + (k*cosBlock) + (b*sinBlock))+"px";
+			atom.core.style.left = String((k*cosBlock) + (b*sinBlock) + o)+"px";
 
 			ang21 +=0.05;
 			i1 += 0.008;
@@ -173,22 +172,22 @@ function createAtom () {
 
 			var j = Math.sin(c1)*p;
 			var x = Math.cos(c1)*p;
-			electron.style.top = String(Math.cos(ang1)*20 + (k*onOff) + randTop + (j*sinBlockr) + (x*cosBlockr))+"px";
-			electron1k.style.top = String(Math.sin(ang1)*30 + (k*onOff) + randTop + (j*sinBlockr) + (x*cosBlockr))+"px";
-			core1.style.top = String((j*sinBlockr) + (x*cosBlockr) + randTop+ (k*onOff))+"px";
+			atom.firstElectron.style.top = String(Math.cos(ang1)*20 + (k*onOff) + randTop + (j*sinBlockr) + (x*cosBlockr))+"px";
+			atom.secondElectron.style.top = String(Math.sin(ang1)*30 + (k*onOff) + randTop + (j*sinBlockr) + (x*cosBlockr))+"px";
+			atom.core.style.top = String((j*sinBlockr) + (x*cosBlockr) + randTop+ (k*onOff))+"px";
 
 			ang1 +=0.05;
 		    c1 += 0.008;
 
-		},5);
+		},interval);
 	};
 };	
 
 
 
 
-for(var i = 0; i < 30; i++){
-	createAtom();
+for(var i = 0; i < 20; i++){
+	insertAtom();
 }
 
 
