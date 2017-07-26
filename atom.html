@@ -3,13 +3,69 @@
 <head>
 	<title>Atomic background</title>
 	<link rel="stylesheet" type="text/css" href="./atom.css">
+	<script type="text/javascript" src="./paper-full.js"></script>
+	<script type="text/paperscript" canvas="canvas">
+
+	var atoms = [];
+	
+	function createSAtom() {
+
+		var maxPoint = new Point(view.size.width, view.size.height);
+		var randomPoint = Point.random();
+		var point = maxPoint * randomPoint;
+
+		var atom = {
+			core: new Path.Circle(new Point(0, 0), 8),
+			electron: new Path.Circle(new Point(0, 0), 4),
+			angleCore: 0,
+			angleEl: 0,
+			scalarCore: 60,
+			scalarElectron: 30,
+			offsetx: point.x,
+			offsety: point.y,
+		};
+
+		atom.core.fillColor = 'red';
+		atom.electron.fillColor = 'black';
+
+		atoms.push(atom);
+
+	};
+
+	for (var i =0; i < 20; i++){
+		createSAtom();
+	};
+
+
+	function onFrame(event) {
+			
+
+		for (atom in atoms) {
+			atoms[atom].core.position = new Point((Math.cos(atoms[atom].angleCore) * atoms[atom].scalarCore + atoms[atom].offsetx), (Math.sin(atoms[atom].angleCore) * atoms[atom].scalarCore + atoms[atom].offsety));
+			atoms[atom].angleCore += 0.05;
+
+
+			atoms[atom].electron.position = new Point((Math.cos(atoms[atom].angleCore) * atoms[atom].scalarCore + atoms[atom].offsetx + Math.sin(atoms[atom].angleEl)*atoms[atom].scalarElectron), (Math.sin(atoms[atom].angleCore) * atoms[atom].scalarCore + atoms[atom].offsety + Math.cos(atoms[atom].angleEl)*atoms[atom].scalarElectron));
+			atoms[atom].angleEl += 0.05;
+
+		};
+
+	};	
+	
+
+	
+
+	</script>
 </head>
 <body>
+
+<canvas id="canvas"></canvas>
 	
 <div id="header">
 	<h1>ATOMS</h1>
 </div>
 
-<script type="text/javascript" src="./atom.js"></script>
+<!--<script type="text/javascript" src="./atom.js"></script>-->
 </body>
+
 </html>
