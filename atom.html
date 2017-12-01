@@ -27,7 +27,13 @@
 			xModifyer: Math.random() * 2.5,
 		};
 
-		atom.core.fillColor = 'red';
+		var coreColor  = 'red';
+
+		if (Math.floor((Math.random()*100)%2) != 0){
+			coreColor = 'orange'
+		};
+
+		atom.core.fillColor = coreColor;
 		atom.electron.fillColor = 'black';
 
 		atoms.push(atom);
