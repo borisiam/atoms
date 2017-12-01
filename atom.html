@@ -17,12 +17,14 @@
 		var atom = {
 			core: new Path.Circle(new Point(0, 0), 8),
 			electron: new Path.Circle(new Point(0, 0), 4),
-			angleCore: 0,
-			angleEl: 0,
+			angleCore: Math.random()*100 + Math.random()*10,
+			angleEl: Math.random()*100 + Math.random()*10,
 			scalarCore: 60,
 			scalarElectron: 30,
 			offsetx: point.x,
 			offsety: point.y,
+			yModifyer: Math.random() * 2.5,
+			xModifyer: Math.random() * 2.5,
 		};
 
 		atom.core.fillColor = 'red';
@@ -32,7 +34,7 @@
 
 	};
 
-	for (var i =0; i < 20; i++){
+	for (var i =0; i < (20 + Math.random()*100); i++){
 		createSAtom();
 	};
 
@@ -41,11 +43,11 @@
 			
 
 		for (atom in atoms) {
-			atoms[atom].core.position = new Point((Math.cos(atoms[atom].angleCore) * atoms[atom].scalarCore + atoms[atom].offsetx), (Math.sin(atoms[atom].angleCore) * atoms[atom].scalarCore + atoms[atom].offsety));
+			atoms[atom].core.position = new Point((Math.cos(atoms[atom].angleCore) * atoms[atom].scalarCore + atoms[atom].offsetx) * atoms[atom].xModifyer, (Math.sin(atoms[atom].angleCore) * atoms[atom].scalarCore + atoms[atom].offsety) * atoms[atom].yModifyer);
 			atoms[atom].angleCore += 0.05;
 
 
-			atoms[atom].electron.position = new Point((Math.cos(atoms[atom].angleCore) * atoms[atom].scalarCore + atoms[atom].offsetx + Math.sin(atoms[atom].angleEl)*atoms[atom].scalarElectron), (Math.sin(atoms[atom].angleCore) * atoms[atom].scalarCore + atoms[atom].offsety + Math.cos(atoms[atom].angleEl)*atoms[atom].scalarElectron));
+			atoms[atom].electron.position = new Point(((Math.cos(atoms[atom].angleCore) * atoms[atom].scalarCore + atoms[atom].offsetx) * atoms[atom].xModifyer + Math.sin(atoms[atom].angleEl)*atoms[atom].scalarElectron), ((Math.sin(atoms[atom].angleCore) * atoms[atom].scalarCore + atoms[atom].offsety) * atoms[atom].yModifyer + Math.cos(atoms[atom].angleEl)*atoms[atom].scalarElectron));
 			atoms[atom].angleEl += 0.05;
 
 		};

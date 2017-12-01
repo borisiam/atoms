@@ -11,7 +11,7 @@ function generateRandIntBetween(a,b) {
 	}
 	else
 	{
-		console.log ("a !< b and that is sad");
+		console.log ("a !< b and that is kinda disappointing");
 	}
 
 };
